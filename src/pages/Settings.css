@@ -1,0 +1,170 @@
+.settings {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.support-card {
+  text-align: center;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.card-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.card-description {
+  color: #888;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.support-btn {
+  width: 100%;
+  padding: 14px;
+  background: #ff0000;
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.support-btn:active {
+  background: #cc0000;
+}
+
+.support-info {
+  font-size: 12px;
+  color: #888;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.settings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.setting-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.setting-left span {
+  font-size: 14px;
+}
+
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.3s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+.toggle input:checked + .slider {
+  background-color: #ff0000;
+}
+
+.toggle input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+.badges {
+  display: flex;
+  gap: 8px;
+}
+
+.badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge.active {
+  background: #ff0000;
+  color: white;
+}
+
+.badge.success {
+  background: #28a745;
+  color: white;
+}
+
+.badge.disabled {
+  background: #2a2a2a;
+  color: #666;
+}
+
+.link-btn {
+  color: #ff0000;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0;
+}
+
+.link-btn:active {
+  opacity: 0.7;
+}
+
+.card-note {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #2a2a2a;
+  font-size: 12px;
+  color: #888;
+  line-height: 1.5;
+}
+
