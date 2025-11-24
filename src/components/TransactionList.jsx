@@ -50,7 +50,7 @@ const transactions = [
       },
       {
         id: 2,
-        title: 'Пополнение (USDT TRC-20)',
+        title: 'Пополнение',
         time: '12:02',
         category: 'Crypto',
         amount: 200.0,
