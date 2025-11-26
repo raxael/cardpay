@@ -3,6 +3,7 @@ import { createContext, useContext, useState } from 'react'
 const AppContext = createContext()
 
 export function AppProvider({ children }) {
+  const [isVerified, setIsVerified] = useState(false)
   const [isActivated, setIsActivated] = useState(false)
   const [cards, setCards] = useState([])
   const [transactions, setTransactions] = useState([])
@@ -35,26 +36,6 @@ export function AppProvider({ children }) {
 
     setTransactions([
       {
-        date: '05 марта',
-        items: [
-          {
-            id: 1,
-            title: 'Spotify',
-            time: '13:20',
-            category: 'Entertainment',
-            amount: -9.99,
-            canDispute: true,
-          },
-          {
-            id: 2,
-            title: 'Пополнение (USDT TRC-20)',
-            time: '12:02',
-            category: 'Crypto',
-            amount: 200.0,
-          },
-        ],
-      },
-      {
         date: '06 марта',
         items: [
           {
@@ -72,6 +53,26 @@ export function AppProvider({ children }) {
             category: 'Services',
             amount: -20.0,
             canDispute: true,
+          },
+        ],
+      },
+      {
+        date: '05 марта',
+        items: [
+          {
+            id: 1,
+            title: 'Spotify',
+            time: '13:20',
+            category: 'Entertainment',
+            amount: -9.99,
+            canDispute: true,
+          },
+          {
+            id: 2,
+            title: 'Пополнение',
+            time: '12:02',
+            category: 'Crypto',
+            amount: 200.0,
           },
         ],
       },
@@ -94,9 +95,14 @@ export function AppProvider({ children }) {
     setSubscriptions([])
   }
 
+  const completeVerification = () => {
+    setIsVerified(true)
+  }
+
   return (
     <AppContext.Provider
       value={{
+        isVerified,
         isActivated,
         cards,
         transactions,
@@ -104,6 +110,7 @@ export function AppProvider({ children }) {
         subscriptions,
         activateAccount,
         deactivateAccount,
+        completeVerification,
         setBalance,
         setCards,
       }}

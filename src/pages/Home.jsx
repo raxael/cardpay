@@ -3,9 +3,8 @@ import { PlusCircle, ArrowRightLeft, Repeat, History } from 'lucide-react'
 import { useApp } from '../context/AppContext'
 import BankCard from '../components/BankCard'
 import BalanceCard from '../components/BalanceCard'
-import SubscriptionsCard from '../components/SubscriptionsCard'
 import ExpensesChart from '../components/ExpensesChart'
-import EmptyState from '../components/EmptyState'
+import HomeEmptyState from '../components/HomeEmptyState'
 import './Home.css'
 
 function Home() {
@@ -15,17 +14,7 @@ function Home() {
   if (!isActivated) {
     return (
       <div className="home">
-        <EmptyState
-          title="Добро пожаловать!"
-          description="Выпустите карту, чтобы начать пользоваться всеми функциями приложения"
-          icon="card"
-        />
-        <button 
-          className="activate-btn" 
-          onClick={() => navigate('/card-issue', { state: { returnPath: '/' } })}
-        >
-          Выпустить карту
-        </button>
+        <HomeEmptyState />
       </div>
     )
   }
@@ -54,7 +43,6 @@ function Home() {
       </div>
 
       <BalanceCard />
-      <SubscriptionsCard />
       <ExpensesChart />
     </div>
   )

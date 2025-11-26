@@ -8,7 +8,6 @@ import './Settings.css'
 function Settings() {
   const navigate = useNavigate()
   const { isActivated } = useApp()
-  const [showVerificationSheet, setShowVerificationSheet] = useState(false)
   const [security, setSecurity] = useState({
     secure3d: true,
     faceId: true,
@@ -39,13 +38,6 @@ function Settings() {
 
   return (
     <div className="settings">
-      <button 
-        className="verification-btn"
-        onClick={() => setShowVerificationSheet(true)}
-      >
-        Пройти верификацию
-      </button>
-
       <Card className="support-card">
         <div className="card-header">
           <MessageCircle size={24} />
@@ -233,40 +225,6 @@ function Settings() {
         </div>
       </Card>
 
-      {showVerificationSheet && (
-        <div className="sheet-overlay" onClick={() => setShowVerificationSheet(false)}>
-          <div className="sheet" onClick={(e) => e.stopPropagation()}>
-            <div className="sheet-header">
-              <h3>Верификация аккаунта</h3>
-              <button onClick={() => setShowVerificationSheet(false)}>✕</button>
-            </div>
-            <div className="sheet-content">
-              <p className="verification-description">
-                Для верификации аккаунта и получения доступа ко всем функциям, необходимо:
-              </p>
-              <div className="verification-list">
-                <div className="verification-item">
-                  <User size={20} />
-                  <span>Укажите ваши данные</span>
-                </div>
-                <div className="verification-item">
-                  <CheckCircle size={20} />
-                  <span>Подтвердите личность</span>
-                </div>
-              </div>
-              <button 
-                className="verification-start-btn"
-                onClick={() => {
-                  setShowVerificationSheet(false)
-                  navigate('/verification')
-                }}
-              >
-                Начать
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   )
 }

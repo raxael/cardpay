@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { CheckCircle, FileText, Globe } from 'lucide-react'
+import { CheckCircle, FileText, Globe, ArrowLeft } from 'lucide-react'
+import { useApp } from '../context/AppContext'
 import Card from '../components/Card'
 import './Verification.css'
 
 function Verification() {
   const navigate = useNavigate()
+  const { completeVerification } = useApp()
   const [step, setStep] = useState(1)
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -28,10 +30,26 @@ function Verification() {
   const handleContinueStep2 = () => {
     // Редирект на внешний сайт с KYC
     // window.location.href = 'https://kyc.example.com'
+    
+    // После завершения верификации помечаем как пройденную
+    completeVerification()
+    navigate('/')
+  }
+
+  const handleBack = () => {
+    if (step === 1) {
+      navigate('/')
+    } else if (step === 2) {
+      setStep(1)
+    }
   }
 
   return (
     <div className="verification-page">
+      <button className="back-btn" onClick={handleBack}>
+        <ArrowLeft size={20} />
+      </button>
+
       {step === 1 && (
         <div className="verification-step">
           <h1 className="verification-title">Укажите ваши данные</h1>
