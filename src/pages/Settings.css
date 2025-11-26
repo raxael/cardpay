@@ -3,6 +3,24 @@
   margin: 0 auto;
 }
 
+.verification-btn {
+  width: 100%;
+  padding: 14px;
+  background: #ff0000;
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  transition: background 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.verification-btn:active {
+  background: #cc0000;
+}
+
 .support-card {
   text-align: center;
 }
@@ -153,10 +171,19 @@
   font-size: 14px;
   font-weight: 600;
   padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 
-.link-btn:active {
+.link-btn:active:not(:disabled) {
   opacity: 0.7;
+}
+
+.link-btn:disabled {
+  color: #666;
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .card-note {
@@ -166,5 +193,108 @@
   font-size: 12px;
   color: #888;
   line-height: 1.5;
+}
+
+.sheet-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+}
+
+.sheet {
+  background: #1a1a1a;
+  width: 100%;
+  border-radius: 20px 20px 0 0;
+  padding: 24px;
+  padding-bottom: 100px;
+  max-height: 80vh;
+  overflow-y: auto;
+  color: #ffffff;
+  border: 1px solid #2a2a2a;
+}
+
+.sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.sheet-header h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.sheet-header button {
+  font-size: 24px;
+  color: #888;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.sheet-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.verification-description {
+  font-size: 14px;
+  color: #888;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.verification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.verification-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #2a2a2a;
+  border-radius: 8px;
+}
+
+.verification-item svg {
+  color: #ff0000;
+  flex-shrink: 0;
+}
+
+.verification-item span {
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.verification-start-btn {
+  width: 100%;
+  padding: 14px;
+  background: #ff0000;
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.verification-start-btn:active {
+  background: #cc0000;
 }
 

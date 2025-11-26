@@ -1,4 +1,5 @@
 import { Music, Film, Bot, Coins, ShoppingBag, Coffee, Zap, Gamepad2, TrendingUp } from 'lucide-react'
+import { useApp } from '../context/AppContext'
 import Card from './Card'
 import './TransactionList.css'
 
@@ -36,51 +37,13 @@ const getTransactionIcon = (title, category) => {
   return <ShoppingBag size={20} />
 }
 
-const transactions = [
-  {
-    date: '05 марта',
-    items: [
-      {
-        id: 1,
-        title: 'Spotify',
-        time: '13:20',
-        category: 'Entertainment',
-        amount: -9.99,
-        canDispute: true,
-      },
-      {
-        id: 2,
-        title: 'Пополнение',
-        time: '12:02',
-        category: 'Crypto',
-        amount: 200.0,
-      },
-    ],
-  },
-  {
-    date: '06 марта',
-    items: [
-      {
-        id: 3,
-        title: 'Netflix',
-        time: '10:15',
-        category: 'Entertainment',
-        amount: -15.99,
-        canDispute: true,
-      },
-      {
-        id: 4,
-        title: 'ChatGPT',
-        time: '09:30',
-        category: 'Services',
-        amount: -20.0,
-        canDispute: true,
-      },
-    ],
-  },
-]
-
 function TransactionList({ filter, searchQuery }) {
+  const { transactions } = useApp()
+  
+  if (!transactions || transactions.length === 0) {
+    return null
+  }
+
   const filteredTransactions = transactions.map((group) => ({
     ...group,
     items: group.items.filter((item) => {

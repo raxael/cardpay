@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Apple, Plus, Star, Trash2 } from 'lucide-react'
+import { useApp } from '../context/AppContext'
 import Card from '../components/Card'
+import EmptyState from '../components/EmptyState'
 import './Cards.css'
 
 function Cards() {
   const navigate = useNavigate()
+  const { isActivated, cards, deactivateAccount } = useApp()
   const [cardName, setCardName] = useState('Платженая система * 6543')
   const [purpose, setPurpose] = useState('Реклама')
   const [onlinePayments, setOnlinePayments] = useState(true)
@@ -17,33 +20,72 @@ function Cards() {
 
   const purposes = ['Реклама', 'Подписки', 'Путешествия', 'Фриланс', 'Другое']
 
-  const historyItems = [
-    { title: 'Netflix', amount: -15.99, date: '03 Oct' },
-    { title: 'Google Ads', amount: -45.50, date: '02 Oct' },
-    { title: 'Chat GPT', amount: -20.00, date: '01 Oct' },
-  ]
+  const currentCard = cards.length > 0 ? cards[0] : null
+  const historyItems = currentCard
+    ? [
+        { title: 'Netflix', amount: -15.99, date: '03 Oct' },
+        { title: 'Google Ads', amount: -45.50, date: '02 Oct' },
+        { title: 'Chat GPT', amount: -20.00, date: '01 Oct' },
+      ]
+    : []
+
+  if (!isActivated || !currentCard) {
+    return (
+      <div className="cards-page">
+        <EmptyState
+          title="Нет карт"
+          description="Выпустите карту, чтобы начать пользоваться всеми функциями приложения"
+          icon="cards"
+        />
+        <div className="empty-state-actions">
+          <button 
+            className="issue-card-btn"
+            onClick={() => navigate('/card-issue', { state: { returnPath: '/cards' } })}
+          >
+            <Plus size={20} />
+            Выпустить карту
+          </button>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="cards-page">
       <div className="cards-header">
         <h1 className="cards-title">Карты (2)</h1>
-        <button className="issue-card-btn">
+        <button 
+          className="issue-card-btn"
+          onClick={() => navigate('/card-issue', { state: { returnPath: '/cards' } })}
+        >
           <Plus size={20} />
           Выпустить карту
         </button>
       </div>
 
-      <Card className="bank-card">
+      <Card 
+        className="bank-card" 
+        onClick={() => {
+          const cardType = currentCard.type === 'Visa' ? 'visa' : 'mastercard-pro'
+          navigate('/card-details', { 
+            state: { 
+              cardType,
+              returnPath: '/cards' 
+            } 
+          })
+        }}
+        style={{ cursor: 'pointer' }}
+      >
         <div className="bank-card-header">
-          <div className="payment-system">VISA</div>
+          <div className="payment-system">{currentCard.type}</div>
           <div className="card-status">
             <span className="badge active">Активная</span>
             <Apple size={22} />
           </div>
         </div>
-        <div className="card-number">0000 0000 0000 0000</div>
+        <div className="card-number">{currentCard.number}</div>
         <div className="card-holder-info">
-          <div className="card-date">12/28</div>
+          <div className="card-date">{currentCard.expiryDate}</div>
           <div className="card-chip">
             <div className="chip"></div>
           </div>
@@ -193,11 +235,11 @@ function Cards() {
             <div className="sheet-content">
               <div className="detail-row">
                 <span>Номер карты:</span>
-                <span>0000 0000 0000 0000</span>
+                <span>{currentCard.number}</span>
               </div>
               <div className="detail-row">
                 <span>Срок действия:</span>
-                <span>12/28</span>
+                <span>{currentCard.expiryDate}</span>
               </div>
               <div className="detail-row">
                 <span>CVV:</span>
@@ -232,7 +274,8 @@ function Cards() {
                 className="modal-btn confirm"
                 onClick={() => {
                   setShowDeleteModal(false)
-                  // Здесь будет логика удаления карты
+                  deactivateAccount()
+                  navigate('/')
                 }}
               >
                 Удалить

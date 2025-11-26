@@ -1,19 +1,38 @@
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Eye, EyeOff, Apple, PlusCircle, ArrowRightLeft, Repeat, History } from 'lucide-react'
-import Card from '../components/Card'
+import { PlusCircle, ArrowRightLeft, Repeat, History } from 'lucide-react'
+import { useApp } from '../context/AppContext'
 import BankCard from '../components/BankCard'
 import BalanceCard from '../components/BalanceCard'
 import SubscriptionsCard from '../components/SubscriptionsCard'
 import ExpensesChart from '../components/ExpensesChart'
+import EmptyState from '../components/EmptyState'
 import './Home.css'
 
 function Home() {
   const navigate = useNavigate()
+  const { isActivated, activateAccount, cards } = useApp()
+
+  if (!isActivated) {
+    return (
+      <div className="home">
+        <EmptyState
+          title="Добро пожаловать!"
+          description="Выпустите карту, чтобы начать пользоваться всеми функциями приложения"
+          icon="card"
+        />
+        <button 
+          className="activate-btn" 
+          onClick={() => navigate('/card-issue', { state: { returnPath: '/' } })}
+        >
+          Выпустить карту
+        </button>
+      </div>
+    )
+  }
 
   return (
     <div className="home">
-      <BankCard />
+      {cards.length > 0 && <BankCard returnPath="/" />}
       
       <div className="nav-buttons">
         <button onClick={() => navigate('/topup')} className="nav-btn">
@@ -37,8 +56,6 @@ function Home() {
       <BalanceCard />
       <SubscriptionsCard />
       <ExpensesChart />
-      
-      <button className="activate-btn">Активировать карту</button>
     </div>
   )
 }

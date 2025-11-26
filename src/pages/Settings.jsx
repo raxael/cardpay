@@ -1,9 +1,14 @@
 import { useState } from 'react'
-import { MessageCircle, Shield, CreditCard, Bell, User } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { MessageCircle, Shield, CreditCard, Bell, User, CheckCircle } from 'lucide-react'
+import { useApp } from '../context/AppContext'
 import Card from '../components/Card'
 import './Settings.css'
 
 function Settings() {
+  const navigate = useNavigate()
+  const { isActivated } = useApp()
+  const [showVerificationSheet, setShowVerificationSheet] = useState(false)
   const [security, setSecurity] = useState({
     secure3d: true,
     faceId: true,
@@ -34,6 +39,13 @@ function Settings() {
 
   return (
     <div className="settings">
+      <button 
+        className="verification-btn"
+        onClick={() => setShowVerificationSheet(true)}
+      >
+        Пройти верификацию
+      </button>
+
       <Card className="support-card">
         <div className="card-header">
           <MessageCircle size={24} />
@@ -114,53 +126,55 @@ function Settings() {
         </div>
       </Card>
 
-      <Card>
-        <h3 className="card-title">Платежи и карты</h3>
-        <div className="settings-list">
-          <div className="setting-item">
-            <div className="setting-left">
-              <CreditCard size={20} />
-              <span>Валюта карты</span>
+      {isActivated && (
+        <Card>
+          <h3 className="card-title">Платежи и карты</h3>
+          <div className="settings-list">
+            <div className="setting-item">
+              <div className="setting-left">
+                <CreditCard size={20} />
+                <span>Валюта карты</span>
+              </div>
+              <div className="badges">
+                <span className="badge active">USD</span>
+                <span className="badge">EUR</span>
+                <span className="badge">GBP</span>
+              </div>
             </div>
-            <div className="badges">
-              <span className="badge active">USD</span>
-              <span className="badge">EUR</span>
-              <span className="badge">GBP</span>
+            <div className="setting-item">
+              <div className="setting-left">
+                <CreditCard size={20} />
+                <span>Apple Pay / Google Pay</span>
+              </div>
+              <span className="badge success">поддерживается</span>
+            </div>
+            <div className="setting-item">
+              <div className="setting-left">
+                <CreditCard size={20} />
+                <span>Автоплатежи и подписки</span>
+              </div>
+              <label className="toggle">
+                <input
+                  type="checkbox"
+                  checked={payments.autopay}
+                  onChange={() => togglePayments('autopay')}
+                />
+                <span className="slider"></span>
+              </label>
+            </div>
+            <div className="setting-item">
+              <div className="setting-left">
+                <CreditCard size={20} />
+                <span>Биллинг-адрес</span>
+              </div>
+              <span className="badge disabled">после активации</span>
             </div>
           </div>
-          <div className="setting-item">
-            <div className="setting-left">
-              <CreditCard size={20} />
-              <span>Apple Pay / Google Pay</span>
-            </div>
-            <span className="badge success">поддерживается</span>
+          <div className="card-note">
+            Изменения доступны после активации.
           </div>
-          <div className="setting-item">
-            <div className="setting-left">
-              <CreditCard size={20} />
-              <span>Автоплатежи и подписки</span>
-            </div>
-            <label className="toggle">
-              <input
-                type="checkbox"
-                checked={payments.autopay}
-                onChange={() => togglePayments('autopay')}
-              />
-              <span className="slider"></span>
-            </label>
-          </div>
-          <div className="setting-item">
-            <div className="setting-left">
-              <CreditCard size={20} />
-              <span>Биллинг-адрес</span>
-            </div>
-            <span className="badge disabled">после активации</span>
-          </div>
-        </div>
-        <div className="card-note">
-          Изменения доступны после активации.
-        </div>
-      </Card>
+        </Card>
+      )}
 
       <Card>
         <h3 className="card-title">Уведомления</h3>
@@ -204,20 +218,55 @@ function Settings() {
               <User size={20} />
               <span>Имя владельца карты</span>
             </div>
-            <button className="link-btn">изменить</button>
+            <button className="link-btn" disabled={!isActivated}>изменить</button>
           </div>
           <div className="setting-item">
             <div className="setting-left">
               <User size={20} />
               <span>Контактный email / телефон</span>
             </div>
-            <button className="link-btn">изменить</button>
+            <button className="link-btn" disabled={!isActivated}>изменить</button>
           </div>
         </div>
         <div className="card-note">
           Изменения доступны после активации
         </div>
       </Card>
+
+      {showVerificationSheet && (
+        <div className="sheet-overlay" onClick={() => setShowVerificationSheet(false)}>
+          <div className="sheet" onClick={(e) => e.stopPropagation()}>
+            <div className="sheet-header">
+              <h3>Верификация аккаунта</h3>
+              <button onClick={() => setShowVerificationSheet(false)}>✕</button>
+            </div>
+            <div className="sheet-content">
+              <p className="verification-description">
+                Для верификации аккаунта и получения доступа ко всем функциям, необходимо:
+              </p>
+              <div className="verification-list">
+                <div className="verification-item">
+                  <User size={20} />
+                  <span>Укажите ваши данные</span>
+                </div>
+                <div className="verification-item">
+                  <CheckCircle size={20} />
+                  <span>Подтвердите личность</span>
+                </div>
+              </div>
+              <button 
+                className="verification-start-btn"
+                onClick={() => {
+                  setShowVerificationSheet(false)
+                  navigate('/verification')
+                }}
+              >
+                Начать
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

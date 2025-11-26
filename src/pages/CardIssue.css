@@ -1,0 +1,128 @@
+.card-issue-page {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+  padding-bottom: 100px;
+}
+
+.back-btn {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  padding: 8px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.back-btn:active {
+  background: #2a2a2a;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 32px;
+}
+
+.card-category {
+  margin-bottom: 32px;
+}
+
+.category-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.card-option {
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 2px solid #2a2a2a;
+}
+
+.card-option:hover {
+  border-color: #ff0000;
+  background: #1f1f1f;
+}
+
+.card-option:active {
+  transform: scale(0.98);
+}
+
+.card-option-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.card-option-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.card-option-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visa-logo {
+  width: 60px;
+  height: 40px;
+  background: linear-gradient(135deg, #1a1f71 0%, #192f6e 50%, #1434ad 100%);
+  border-radius: 6px;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mastercard-logo {
+  width: 60px;
+  height: 40px;
+  background: linear-gradient(135deg, #eb001b 0%, #f79e1b 100%);
+  border-radius: 6px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.mastercard-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.mastercard-circle.circle-1 {
+  background: #eb001b;
+  left: 8px;
+}
+
+.mastercard-circle.circle-2 {
+  background: #f79e1b;
+  right: 8px;
+}
+
+.card-option-description {
+  font-size: 14px;
+  color: #888;
+  line-height: 1.5;
+  margin: 0;
+}
+

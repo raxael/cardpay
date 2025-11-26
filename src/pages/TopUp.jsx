@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Copy, Share2, CheckCircle, Coins, Zap } from 'lucide-react'
+import { useApp } from '../context/AppContext'
 import Card from '../components/Card'
+import EmptyState from '../components/EmptyState'
 import './TopUp.css'
 
 const TronIcon = () => (
@@ -44,8 +46,21 @@ const paymentMethods = [
 ]
 
 function TopUp() {
+  const { isActivated } = useApp()
   const [selectedMethod, setSelectedMethod] = useState(null)
   const [copied, setCopied] = useState(false)
+
+  if (!isActivated) {
+    return (
+      <div className="topup">
+        <EmptyState
+          title="Пополнение недоступно"
+          description="Активируйте карту на главной странице, чтобы начать пополнять баланс"
+          icon="card"
+        />
+      </div>
+    )
+  }
 
   const address = selectedMethod
     ? 'TQzK8J8vJ8vJ8vJ8vJ8vJ8vJ8vJ8vJ8vJ'

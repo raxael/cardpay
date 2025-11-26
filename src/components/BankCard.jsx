@@ -1,30 +1,52 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Apple } from 'lucide-react'
+import { useApp } from '../context/AppContext'
 import Card from './Card'
 import './BankCard.css'
 
-function BankCard() {
+function BankCard({ returnPath = '/' }) {
+  const { cards } = useApp()
+  const navigate = useNavigate()
   const [showDetails, setShowDetails] = useState(false)
 
+  const card = cards.length > 0 ? cards[0] : null
+
+  if (!card) return null
+
+  const handleCardClick = () => {
+    // Определяем тип карты на основе данных карты
+    const cardType = card.type === 'Visa' ? 'visa' : 'mastercard-pro'
+    navigate('/card-details', { 
+      state: { 
+        cardType,
+        returnPath 
+      } 
+    })
+  }
+
   return (
-    <Card className="bank-card">
+    <Card className="bank-card" onClick={handleCardClick} style={{ cursor: 'pointer' }}>
       <div className="bank-card-header">
-        <div className="payment-system">VISA</div>
+        <div className="payment-system">{card.type}</div>
         <div className="card-status">
           <span className="badge active">Активная</span>
           <Apple size={22} />
         </div>
       </div>
-      <div className="card-number">0000 0000 0000 0000</div>
+      <div className="card-number">{card.number}</div>
       <div className="card-holder-info">
-        <div className="card-date">12/25</div>
+        <div className="card-date">{card.expiryDate}</div>
         <div className="card-chip">
           <div className="chip"></div>
         </div>
       </div>
       <button 
         className="show-details-btn"
-        onClick={() => setShowDetails(true)}
+        onClick={(e) => {
+          e.stopPropagation()
+          setShowDetails(true)
+        }}
       >
         Показать реквизиты
       </button>
@@ -39,11 +61,11 @@ function BankCard() {
             <div className="sheet-content">
               <div className="detail-row">
                 <span>Номер карты:</span>
-                <span>0000 0000 0000 0000</span>
+                <span>{card.number}</span>
               </div>
               <div className="detail-row">
                 <span>Срок действия:</span>
-                <span>12/25</span>
+                <span>{card.expiryDate}</span>
               </div>
               <div className="detail-row">
                 <span>CVV:</span>
