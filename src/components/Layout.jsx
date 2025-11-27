@@ -4,9 +4,9 @@ import TopMenu from './TopMenu'
 
 function Layout({ children }) {
   const location = useLocation()
-  const hideTopMenuPaths = ['/', '/verification', '/card-issue', '/card-details']
+  const hideTopMenuPaths = ['/', '/verification', '/card-issue']
   const showTopMenu = !hideTopMenuPaths.includes(location.pathname)
-  const noPaddingPaths = ['/verification', '/card-issue', '/card-details']
+  const noPaddingPaths = ['/verification', '/card-issue']
 
   return (
     <div style={{ minHeight: '100vh', paddingBottom: '80px' }}>

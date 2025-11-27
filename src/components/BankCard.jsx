@@ -14,19 +14,8 @@ function BankCard({ returnPath = '/' }) {
 
   if (!card) return null
 
-  const handleCardClick = () => {
-    // Определяем тип карты на основе данных карты
-    const cardType = card.type === 'Visa' ? 'visa' : 'mastercard-pro'
-    navigate('/card-details', { 
-      state: { 
-        cardType,
-        returnPath 
-      } 
-    })
-  }
-
   return (
-    <Card className="bank-card" onClick={handleCardClick} style={{ cursor: 'pointer' }}>
+    <Card className="bank-card">
       <div className="bank-card-header">
         <div className="payment-system">{card.type}</div>
         <div className="card-status">

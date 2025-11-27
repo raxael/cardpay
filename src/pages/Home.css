@@ -1,57 +1,490 @@
 .home {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   max-width: 600px;
   margin: 0 auto;
 }
 
-.nav-buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  margin-bottom: 24px;
-}
-
-.nav-btn {
-  padding: 16px 8px;
-  background: #1a1a1a;
-  border-radius: 8px;
-  font-size: 12px;
-  color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  border: 1px solid #2a2a2a;
-  transition: all 0.2s;
+.home-header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
+  padding: 0 4px;
+  margin-bottom: 8px;
 }
 
-.nav-btn svg {
-  color: #ff0000;
-  transition: transform 0.2s;
-}
-
-.nav-btn:active {
-  transform: scale(0.98);
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
   background: #2a2a2a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  border: 2px solid #2a2a2a;
 }
 
-.nav-btn:active svg {
-  transform: scale(1.1);
+.user-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
 }
 
-.activate-btn {
+.verify-btn {
+  padding: 10px 16px;
+  background: #ff0000;
+  color: white;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.verify-btn:active {
+  background: #cc0000;
+}
+
+.balance-card {
+  padding: 24px;
+}
+
+.balance-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.balance-left {
+  flex: 1;
+}
+
+.balance-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.balance-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.toggle-visibility {
+  background: transparent;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.balance-amount {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.topup-balance-btn {
   width: 100%;
-  padding: 16px;
+  padding: 14px;
   background: #ff0000;
   color: white;
   border-radius: 12px;
   font-size: 16px;
   font-weight: 600;
-  margin-top: 8px;
+  border: none;
+  cursor: pointer;
   transition: background 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 
-.activate-btn:active {
+.topup-balance-btn:active {
   background: #cc0000;
 }
 
+.all-cards-btn {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ff0000;
+  text-decoration: none;
+  white-space: nowrap;
+  margin-left: 16px;
+  transition: opacity 0.2s;
+}
+
+.all-cards-btn:hover {
+  opacity: 0.8;
+}
+
+.all-cards-btn:active {
+  opacity: 0.6;
+}
+
+.card-preview-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 0 12px 0;
+}
+
+.card-mini-preview {
+  flex-shrink: 0;
+}
+
+.card-mini {
+  width: 100px;
+  height: 60px;
+  border-radius: 10px;
+  position: relative;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.card-mini-text {
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: lowercase;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.visa-mini {
+  background: linear-gradient(135deg, #1a1f71 0%, #192f6e 50%, #1434ad 100%);
+}
+
+.mastercard-mini {
+  background: linear-gradient(135deg, #eb001b 0%, #f79e1b 100%);
+}
+
+.card-mini-logo {
+  color: white;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 2;
+}
+
+.mastercard-mini-circles {
+  width: 32px;
+  height: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.mastercard-mini-circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.mastercard-mini-circle.circle-1 {
+  background: #eb001b;
+  left: 0;
+}
+
+.mastercard-mini-circle.circle-2 {
+  background: #f79e1b;
+  right: 0;
+}
+
+.card-preview-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  align-items: flex-start;
+}
+
+.card-preview-btn {
+  padding: 8px 14px;
+  background: #ff0000;
+  color: white;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: fit-content;
+}
+
+.card-preview-btn:active {
+  background: #cc0000;
+}
+
+.all-cards-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  justify-content: center;
+  text-transform: lowercase;
+  transition: all 0.2s;
+  margin-top: 8px;
+}
+
+.all-cards-link:active {
+  opacity: 0.7;
+}
+
+.all-cards-link .rotated {
+  transform: rotate(180deg);
+  transition: transform 0.2s;
+}
+
+.no-cards-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 20px 0;
+}
+
+.no-cards-icon {
+  color: #888;
+}
+
+.no-cards-text {
+  font-size: 14px;
+  color: #888;
+  text-align: center;
+  margin: 0;
+}
+
+.issue-card-btn {
+  width: 100%;
+  padding: 14px;
+  background: #ff0000;
+  color: white;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.issue-card-btn:active {
+  background: #cc0000;
+}
+
+.wallet-mini-card {
+  padding: 16px;
+}
+
+.wallet-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wallet-info .wallet-amount {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.wallet-label {
+  font-size: 12px;
+  color: #888;
+}
+
+.useful-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.useful-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.useful-slider {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  width: 100%;
+}
+
+.useful-slider-track {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+}
+
+.useful-item {
+  padding: 16px;
+  min-width: 100%;
+  width: 100%;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  margin-right: 12px;
+}
+
+.useful-item:last-child {
+  margin-right: 0;
+}
+
+.useful-item-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.useful-item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.useful-icon {
+  color: #ff0000;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.useful-item-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.useful-item-description {
+  font-size: 12px;
+  color: #888;
+  line-height: 1.4;
+}
+
+.useful-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #ff0000;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: opacity 0.2s;
+}
+
+.useful-link:active {
+  opacity: 0.7;
+}
+
+.useful-links-card {
+  padding: 0;
+  margin-top: 8px;
+}
+
+.useful-link-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.useful-link-item:active {
+  background: #2a2a2a;
+}
+
+.useful-link-divider {
+  height: 1px;
+  background: #2a2a2a;
+  margin: 0 16px;
+}
+
+.useful-link-item svg {
+  color: #ff0000;
+  flex-shrink: 0;
+}
+
+.useful-link-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.useful-link-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.useful-link-desc {
+  font-size: 12px;
+  color: #888;
+}
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.slider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: #2a2a2a;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s;
+}
+
+.slider-dot.active {
+  background: #ff0000;
+  width: 24px;
+  border-radius: 4px;
+}

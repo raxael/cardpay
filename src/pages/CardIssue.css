@@ -41,48 +41,85 @@
   margin-bottom: 16px;
 }
 
-.card-option {
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
   margin-bottom: 16px;
-  cursor: pointer;
-  transition: all 0.2s;
-  border: 2px solid #2a2a2a;
 }
 
-.card-option:hover {
-  border-color: #ff0000;
-  background: #1f1f1f;
-}
-
-.card-option:active {
-  transform: scale(0.98);
-}
-
-.card-option-header {
+.card-item {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  text-align: left;
+}
+
+.card-preview {
+  width: 100%;
+  aspect-ratio: 1.6;
+  border-radius: 12px;
+  position: relative;
+  padding: 16px;
+}
+
+.visa-card-bg {
+  background: linear-gradient(135deg, #87CEEB 0%, #6BB6FF 100%);
+}
+
+.mastercard-card-bg {
+  background: linear-gradient(135deg, #DDA0DD 0%, #BA55D3 100%);
+}
+
+.card-icon-wrapper {
+  color: white;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: flex;
   align-items: center;
-  margin-bottom: 12px;
+  z-index: 1;
+}
+
+.card-icon-wrapper svg {
+  margin-right: -8px;
+}
+
+.card-icon-wrapper svg:last-child {
+  margin-right: 0;
 }
 
 .card-option-title {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: #ffffff;
+  margin: 0;
+  text-align: left;
 }
 
 .card-option-logo {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.card-description-wrapper {
+  min-height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+}
+
 .visa-logo {
-  width: 60px;
-  height: 40px;
-  background: linear-gradient(135deg, #1a1f71 0%, #192f6e 50%, #1434ad 100%);
-  border-radius: 6px;
+  width: 50px;
+  height: 32px;
+  border-radius: 4px;
   color: white;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 1px;
   display: flex;
@@ -91,11 +128,9 @@
 }
 
 .mastercard-logo {
-  width: 60px;
-  height: 40px;
-  background: linear-gradient(135deg, #eb001b 0%, #f79e1b 100%);
-  border-radius: 6px;
-  position: relative;
+  width: 50px;
+  height: 32px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -103,26 +138,45 @@
 }
 
 .mastercard-circle {
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   position: absolute;
 }
 
 .mastercard-circle.circle-1 {
   background: #eb001b;
-  left: 8px;
+  left: 6px;
 }
 
 .mastercard-circle.circle-2 {
   background: #f79e1b;
-  right: 8px;
+  right: 6px;
 }
 
 .card-option-description {
-  font-size: 14px;
+  font-size: 12px;
   color: #888;
-  line-height: 1.5;
+  line-height: 1.4;
   margin: 0;
+  text-align: left;
+  width: 100%;
+}
+
+.open-card-btn {
+  width: 100%;
+  padding: 12px;
+  background: #ff0000;
+  color: white;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.open-card-btn:active {
+  background: #cc0000;
 }
 

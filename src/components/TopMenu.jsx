@@ -1,10 +1,17 @@
-import { Bell, MessageCircle } from 'lucide-react'
+import { Bell, MessageCircle, ArrowLeft } from 'lucide-react'
 import './TopMenu.css'
 
 function TopMenu() {
+  const handleBack = () => {
+    window.history.back()
+  }
+
   return (
     <header className="top-menu">
       <div className="top-menu-left">
+        <button className="back-button" onClick={handleBack}>
+          <ArrowLeft size={20} />
+        </button>
         <a href="https://change.pro" target="_blank" rel="noopener noreferrer" className="logo-link">
           <img 
             src="https://change.pro/media/images/logos/logo-short-light.svg" 

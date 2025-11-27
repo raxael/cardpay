@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useTelegram } from './hooks/useTelegram'
-import { AppProvider, useApp } from './context/AppContext'
+import { AppProvider } from './context/AppContext'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import History from './pages/History'
@@ -9,21 +9,7 @@ import Cards from './pages/Cards'
 import Settings from './pages/Settings'
 import Verification from './pages/Verification'
 import CardIssue from './pages/CardIssue'
-import CardDetails from './pages/CardDetails'
-import VerificationRequired from './pages/VerificationRequired'
-
 function AppRoutes() {
-  const { isVerified } = useApp()
-
-  if (!isVerified) {
-    return (
-      <Routes>
-        <Route path="/verification" element={<Verification />} />
-        <Route path="*" element={<VerificationRequired />} />
-      </Routes>
-    )
-  }
-
   return (
     <Layout>
       <Routes>
@@ -34,7 +20,6 @@ function AppRoutes() {
         <Route path="/settings" element={<Settings />} />
         <Route path="/verification" element={<Verification />} />
         <Route path="/card-issue" element={<CardIssue />} />
-        <Route path="/card-details" element={<CardDetails />} />
       </Routes>
     </Layout>
   )

@@ -53,9 +53,10 @@ function Cards() {
   return (
     <div className="cards-page">
       <div className="cards-header">
-        <h1 className="cards-title">Карты (2)</h1>
+        <h1 className="cards-title">Карты</h1>
         <button 
           className="issue-card-btn"
+          style={{ width: 'auto' }}
           onClick={() => navigate('/card-issue', { state: { returnPath: '/cards' } })}
         >
           <Plus size={20} />
@@ -64,17 +65,7 @@ function Cards() {
       </div>
 
       <Card 
-        className="bank-card" 
-        onClick={() => {
-          const cardType = currentCard.type === 'Visa' ? 'visa' : 'mastercard-pro'
-          navigate('/card-details', { 
-            state: { 
-              cardType,
-              returnPath: '/cards' 
-            } 
-          })
-        }}
-        style={{ cursor: 'pointer' }}
+        className="bank-card"
       >
         <div className="bank-card-header">
           <div className="payment-system">{currentCard.type}</div>
