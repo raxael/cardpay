@@ -20,7 +20,7 @@ function Home() {
     { ...cards[0], id: 3, number: '0000 0000 0000 2222', name: 'Карта 3' }
   ] : []
   
-  const visibleCards = showAllCards ? displayCards : displayCards.slice(0, 2)
+  const visibleCards = showAllCards ? displayCards : displayCards.slice(0, 1)
 
   const usefulItems = [
     {

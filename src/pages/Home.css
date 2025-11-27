@@ -238,6 +238,10 @@
   cursor: pointer;
   transition: background 0.2s;
   width: 100%;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-preview-btn:active {
@@ -290,7 +294,7 @@
   margin: 0;
 }
 
-.issue-card-btn {
+.home .issue-card-btn {
   width: 100%;
   padding: 14px;
   background: #ff0000;
@@ -307,7 +311,7 @@
   gap: 8px;
 }
 
-.issue-card-btn:active {
+.home .issue-card-btn:active {
   background: #cc0000;
 }
 
