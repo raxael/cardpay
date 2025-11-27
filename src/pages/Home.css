@@ -140,6 +140,7 @@
 .card-preview-wrapper {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 16px;
   margin: 0 0 12px 0;
 }
@@ -149,8 +150,8 @@
 }
 
 .card-mini {
-  width: 100px;
-  height: 60px;
+  width: 150px;
+  height: 95px;
   border-radius: 10px;
   position: relative;
   padding: 10px;
@@ -223,7 +224,7 @@
   flex-direction: column;
   gap: 8px;
   flex: 1;
-  align-items: flex-start;
+  align-items: flex-end;
 }
 
 .card-preview-btn {
@@ -236,7 +237,7 @@
   border: none;
   cursor: pointer;
   transition: background 0.2s;
-  width: fit-content;
+  width: 100%;
 }
 
 .card-preview-btn:active {
